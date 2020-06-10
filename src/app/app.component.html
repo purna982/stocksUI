@@ -1,0 +1,33 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Facebook stocks
+  </h1>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>*</th>
+      <th scope="col">Pair</th>
+      <th scope="col">Bid</th>
+      <th scope="col">Ask</th>
+      <th scope="col">Mid</th>
+      <th scope="col">Time</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let stock of stocks; index as i">
+      <td><div *ngIf="stock.status === 'up' else downTemp "><i class="fa fa-arrow-up"></i></div>
+        <ng-template #downTemp><i class="fa fa-arrow-down"></i></ng-template></td>
+      <td style="color:green">
+        {{ stock.name }}
+      </td>
+      <td style="color:blue">{{ stock.bid }}</td>
+      <td style="color:blue">{{ stock.ask }}</td>
+      <td style="color:blueviolet">{{stock.mid}}</td>
+      <td> {{stock.eventTime | date:'M/d/yy, h:mm a'}}</td>
+
+    </tr>
+    </tbody>
+  </table>
+
