@@ -1,13 +1,19 @@
-import { TestBed, async } from '@angular/core/testing';
+import { StockServiceMock } from './../mock/stock.service.mock';
+import { StockService } from './stock.service';
+import { TestBed, async, fakeAsync } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  
+  beforeEach(fakeAsync (() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
       ],
+      providers: [
+        { provide: StockService, useClass: StockServiceMock }
+    ]
     }).compileComponents();
   }));
 
@@ -27,6 +33,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
+    expect(compiled.querySelector('h1').textContent).toContain('Facebook stocks');
   }));
 });
